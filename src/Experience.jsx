@@ -13,6 +13,13 @@ export default function Experience() {
     const groupRef = useRef();
 
     useFrame((state, delta) => {
+        const angle = state.clock.elapsedTime;
+
+        state.camera.position.x = Math.sin(angle * 0.5) * 8;
+        state.camera.position.z = Math.cos(angle * 0.5) * 8;
+
+        state.camera.lookAt(0, 0, 0);
+
         cubeRef.current.rotation.y += delta;
         // groupRef.current.rotation.y += delta;
     });
@@ -20,7 +27,7 @@ export default function Experience() {
     return (
         <>
 
-            <orbitControls args={ [ camera, gl.domElement ] } />
+            {/* <orbitControls args={ [ camera, gl.domElement ] } /> */}
 
             <directionalLight position={ [ 1, 2, 3 ] } intensity={ 2.5 } />
             <ambientLight intensity={ 1.5 } />
